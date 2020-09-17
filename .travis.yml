@@ -16,7 +16,8 @@ before_install:
 
 script:
   # - docker build -t cisaia/apisimplon:latest . 
-  - docker tag cisaia/apisimplon registry.heroku.com/$HEROKU_APP_NAME/web
+  # - docker tag cisaia/apisimplon registry.heroku.com/$HEROKU_APP_NAME/web
+  - docker tag cisaia/apisimplon registry.heroku.com/travis-testies/web
 
 deploy:
   provider: script
@@ -24,7 +25,9 @@ deploy:
     # docker push cisaia/apisimplon;
 
     # docker push registry.heroku.com/$HEROKU_APP_NAME/web;
-    heroku container:push web --app $HEROKU_APP_NAME
-    heroku container:release web --app $HEROKU_APP_NAME
+    # heroku container:push web --app $HEROKU_APP_NAME
+    heroku container:push web --app travis-testies
+    # heroku container:release web --app $HEROKU_APP_NAME
+    heroku container:release web --app travis-testies
   on:
     branch: master
